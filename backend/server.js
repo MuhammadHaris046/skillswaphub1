@@ -139,19 +139,14 @@ app.get('*', (req, res) => {
 // Error handling middleware (must be last)
 app.use(errorHandler);
 
-// Start server (for local development)
+// Start server (local development)
 const PORT = process.env.PORT || 5000;
-if (process.env.NODE_ENV !== 'production' || process.env.LOCAL_DEV === 'true') {
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-    console.log(`Frontend served from: http://localhost:${PORT}`);
-    console.log(`API endpoint: http://localhost:${PORT}/api`);
-  });
-} else {
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-  });
-}
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+  console.log(`Frontend served from: http://localhost:${PORT}`);
+  console.log(`API endpoint: http://localhost:${PORT}/api`);
+});
 
-// Export for Vercel serverless
+// Export app for Vercel serverless deployment
 module.exports = app;
+
