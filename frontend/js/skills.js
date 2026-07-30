@@ -273,9 +273,9 @@ function setupOfferSkillForm() {
     return;
   }
 
-  // AJAX skill title check on blur
+  // AJAX skill title check on change
   if (titleInput && titleFeedback) {
-    titleInput.addEventListener('blur', async function() {
+    titleInput.addEventListener('change', async function() {
       const title = this.value.trim();
       
       if (!title) {
