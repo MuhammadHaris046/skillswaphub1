@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Session - SkillSwap Hub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/pages/index.html">SkillSwap Hub</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pages/index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pages/browse-skills.html">Browse Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pages/offer-skill.html">Offer a Skill</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pages/dashboard.html">My Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pages/about.html">About Developers</a>
+                    </li>
+                    <li class="nav-item auth-links">
+                        <a class="nav-link" href="/pages/login.html">Login</a>
+                    </li>
+                    <li class="nav-item auth-links">
+                        <a class="nav-link" href="/pages/register.html">Register</a>
+                    </li>
+                    <li class="nav-item user-links d-none">
+                        <span class="nav-link username-link"></span>
+                    </li>
+                    <li class="nav-item user-links d-none">
+                        <a class="nav-link" href="#" id="logout-btn">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h1 class="mb-4">Request Learning Session</h1>
+                
+                <!-- Loading State -->
+                <div id="loading" class="text-center py-5">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+
+                <!-- Skill Details -->
+                <div id="skill-details" class="card d-none">
+                    <div class="card-body">
+                        <h2 id="skill-title" class="card-title"></h2>
+                        <p class="text-muted mb-3">
+                            <span class="badge bg-secondary" id="skill-category"></span>
+                        </p>
+                        <p id="skill-description" class="card-text"></p>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <strong>Offered by:</strong>
+                                <p id="skill-owner"></p>
+                            </div>
+                            <div class="col-md-6">
+                                <strong>University:</strong>
+                                <p id="skill-university"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Authentication Required Message -->
+                <div id="auth-required" class="alert alert-warning mt-4 d-none">
+                    <h4 class="alert-heading">Authentication Required</h4>
+                    <p>You need to be logged in to request a learning session.</p>
+                    <hr>
+                    <a href="/pages/login.html" class="btn btn-primary">Login</a>
+                    <a href="/pages/register.html" class="btn btn-outline-primary">Register</a>
+                </div>
+
+                <!-- Request Form -->
+                <div id="request-form-container" class="card mt-4 d-none">
+                    <div class="card-body">
+                        <h4 class="card-title mb-3">Confirm Your Request</h4>
+                        <p class="card-text">Send a learning session request to the skill owner. They will be able to accept or reject your request.</p>
+                        
+                        <div class="alert alert-info">
+                            <strong>Note:</strong> The skill owner will receive your request and can respond accordingly.
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button id="send-request-btn" class="btn btn-primary btn-lg">Send Request</button>
+                            <a href="/pages/browse-skills.html" class="btn btn-outline-secondary">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Error Message -->
+                <div id="error-message" class="alert alert-danger mt-4 d-none">
+                    <h4 class="alert-heading">Error</h4>
+                    <p id="error-text"></p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Request Sent Successfully!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Your learning session request has been sent to the skill owner. You can track the status in your dashboard.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="/pages/dashboard.html" class="btn btn-primary">Go to Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container text-center">
+            <p>&copy; 2026 SkillSwap Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/api.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/requests.js"></script>
+</body>
+</html>

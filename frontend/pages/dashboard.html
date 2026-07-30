@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard - SkillSwap Hub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/pages/index.html">SkillSwap Hub</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pages/index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pages/browse-skills.html">Browse Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pages/offer-skill.html">Offer a Skill</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/pages/dashboard.html">My Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pages/about.html">About Developers</a>
+                    </li>
+                    <li class="nav-item auth-links">
+                        <a class="nav-link" href="/pages/login.html">Login</a>
+                    </li>
+                    <li class="nav-item auth-links">
+                        <a class="nav-link" href="/pages/register.html">Register</a>
+                    </li>
+                    <li class="nav-item user-links d-none">
+                        <span class="nav-link username-link"></span>
+                    </li>
+                    <li class="nav-item user-links d-none">
+                        <a class="nav-link" href="#" id="logout-btn">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container py-5">
+        <h1 class="mb-4">My Dashboard</h1>
+
+        <!-- Authentication Required Message -->
+        <div id="auth-required" class="alert alert-warning d-none">
+            <h4 class="alert-heading">Authentication Required</h4>
+            <p>You need to be logged in to view your dashboard.</p>
+            <hr>
+            <a href="/pages/login.html" class="btn btn-primary">Login</a>
+            <a href="/pages/register.html" class="btn btn-outline-primary">Register</a>
+        </div>
+
+        <!-- Dashboard Content -->
+        <div id="dashboard-content" class="d-none">
+            <!-- Tabs -->
+            <ul class="nav nav-tabs mb-4" id="dashboardTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="skills-tab" data-bs-toggle="tab" data-bs-target="#skills-content" type="button" role="tab">
+                        Skills I Offer
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="sent-tab" data-bs-toggle="tab" data-bs-target="#sent-content" type="button" role="tab">
+                        Requests Sent
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="received-tab" data-bs-toggle="tab" data-bs-target="#received-content" type="button" role="tab">
+                        Requests Received
+                    </button>
+                </li>
+            </ul>
+
+            <!-- Tab Content -->
+            <div class="tab-content" id="dashboardTabsContent">
+                <!-- Skills I Offer -->
+                <div class="tab-pane fade show active" id="skills-content" role="tabpanel">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h3>Skills I Offer</h3>
+                        <a href="/pages/offer-skill.html" class="btn btn-primary">Offer New Skill</a>
+                    </div>
+                    
+                    <div id="skills-loading" class="text-center py-5">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+
+                    <div id="my-skills-list" class="d-none">
+                        <!-- Skills will be dynamically loaded here -->
+                    </div>
+
+                    <div id="no-skills" class="text-center py-5 d-none">
+                        <h4>You haven't offered any skills yet</h4>
+                        <p class="text-muted">Start sharing your knowledge by offering your first skill.</p>
+                        <a href="/pages/offer-skill.html" class="btn btn-primary">Offer Your First Skill</a>
+                    </div>
+                </div>
+
+                <!-- Requests Sent -->
+                <div class="tab-pane fade" id="sent-content" role="tabpanel">
+                    <h3>Requests Sent</h3>
+                    
+                    <div id="sent-loading" class="text-center py-5">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+
+                    <div id="sent-requests-list" class="d-none">
+                        <!-- Requests will be dynamically loaded here -->
+                    </div>
+
+                    <div id="no-sent" class="text-center py-5 d-none">
+                        <h4>You haven't sent any requests yet</h4>
+                        <p class="text-muted">Browse skills and send learning session requests to start learning.</p>
+                        <a href="/pages/browse-skills.html" class="btn btn-primary">Browse Skills</a>
+                    </div>
+                </div>
+
+                <!-- Requests Received -->
+                <div class="tab-pane fade" id="received-content" role="tabpanel">
+                    <h3>Requests Received</h3>
+                    
+                    <div id="received-loading" class="text-center py-5">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+
+                    <div id="received-requests-list" class="d-none">
+                        <!-- Requests will be dynamically loaded here -->
+                    </div>
+
+                    <div id="no-received" class="text-center py-5 d-none">
+                        <h4>You haven't received any requests yet</h4>
+                        <p class="text-muted">When students request your skills, they'll appear here.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container text-center">
+            <p>&copy; 2026 SkillSwap Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/api.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/dashboard.js"></script>
+</body>
+</html>

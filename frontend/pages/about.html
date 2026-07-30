@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Developers - SkillSwap Hub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: bottom;
+            opacity: 0.3;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            border: none;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .tech-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            margin: 0.25rem;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: transform 0.2s ease;
+        }
+        
+        .tech-badge:hover {
+            transform: scale(1.05);
+        }
+        
+        .tech-badge.frontend {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+        
+        .tech-badge.backend {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+        
+        .tech-badge.database {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            color: white;
+        }
+        
+        .tech-badge.auth {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+        }
+        
+        .tech-badge.api {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: #333;
+        }
+        
+        .team-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            border: none;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.15);
+        }
+        
+        .team-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 3rem;
+            color: white;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .section-subtitle {
+            color: #6c757d;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 0;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/pages/index.html">SkillSwap Hub</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pages/index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pages/browse-skills.html">Browse Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pages/offer-skill.html">Offer a Skill</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pages/dashboard.html">My Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/pages/about.html">About Developers</a>
+                    </li>
+                    <li class="nav-item auth-links">
+                        <a class="nav-link" href="/pages/login.html">Login</a>
+                    </li>
+                    <li class="nav-item auth-links">
+                        <a class="nav-link" href="/pages/register.html">Register</a>
+                    </li>
+                    <li class="nav-item user-links d-none">
+                        <span class="nav-link username-link"></span>
+                    </li>
+                    <li class="nav-item user-links d-none">
+                        <a class="nav-link" href="#" id="logout-btn">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container hero-content text-center">
+            <h1 class="hero-title fade-in">About SkillSwap Hub</h1>
+            <p class="hero-subtitle fade-in">Empowering Students Through Peer-to-Peer Learning</p>
+            <div class="row justify-content-center mt-5">
+                <div class="col-md-3 mb-4">
+                    <div class="stat-card pulse">
+                        <div class="stat-number" id="user-count">-</div>
+                        <div class="text-muted">Total Users</div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="stat-card pulse">
+                        <div class="stat-number" id="skill-count">-</div>
+                        <div class="text-muted">Total Skills</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container py-5">
+        <!-- Project Overview -->
+        <section class="mb-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <h2 class="section-title text-center">Project Overview</h2>
+                    <p class="section-subtitle text-center">Building the future of collaborative learning</p>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-lightbulb"></i>
+                                </div>
+                                <h4>Our Vision</h4>
+                                <p class="text-muted mt-3">
+                                    SkillSwap Hub is a MEAN-stack web platform designed for university students to exchange skills with each other. 
+                                    We believe in the power of peer-to-peer learning and creating collaborative environments.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <h4>Our Mission</h4>
+                                <p class="text-muted mt-3">
+                                    Students can offer skills they can teach, browse skills offered by others, and send/accept/reject learning session requests. 
+                                    Everyone can both teach and learn from each other.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Stack -->
+        <section class="mb-5 py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <h2 class="section-title text-center">Tech Stack</h2>
+                    <p class="section-subtitle text-center">Built with modern technologies</p>
+                    
+                    <div class="text-center">
+                        <span class="tech-badge frontend">
+                            <i class="fab fa-html5 me-2"></i>HTML5
+                        </span>
+                        <span class="tech-badge frontend">
+                            <i class="fab fa-css3-alt me-2"></i>CSS3
+                        </span>
+                        <span class="tech-badge frontend">
+                            <i class="fab fa-bootstrap me-2"></i>Bootstrap 5
+                        </span>
+                        <span class="tech-badge frontend">
+                            <i class="fab fa-js me-2"></i>JavaScript
+                        </span>
+                        <span class="tech-badge backend">
+                            <i class="fab fa-node-js me-2"></i>Node.js
+                        </span>
+                        <span class="tech-badge backend">
+                            <i class="fas fa-server me-2"></i>Express.js
+                        </span>
+                        <span class="tech-badge database">
+                            <i class="fas fa-database me-2"></i>MongoDB
+                        </span>
+                        <span class="tech-badge database">
+                            <i class="fas fa-cogs me-2"></i>Mongoose
+                        </span>
+                        <span class="tech-badge auth">
+                            <i class="fas fa-key me-2"></i>JWT Auth
+                        </span>
+                        <span class="tech-badge api">
+                            <i class="fas fa-exchange-alt me-2"></i>RESTful API
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Development Team -->
+        <section class="mb-5 py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <h2 class="section-title text-center">Development Team</h2>
+                    <p class="section-subtitle text-center">The minds behind SkillSwap Hub</p>
+                    
+                    <div class="row justify-content-center">
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="team-card">
+                                <div class="team-avatar">
+                                    <i class="fas fa-laptop-code"></i>
+                                </div>
+                                <h4>Saeed Aldhanhani</h4>
+                                <p class="text-muted mb-2">Full-Stack Developer</p>
+                                <p class="text-muted small">I am passionate about technology and enjoy learning new web development skills. My strengths include problem-solving, teamwork, and creating creative solutions for technical challenges.</p>
+                                <div class="mt-3">
+                                    <span class="badge bg-primary me-1">Frontend</span>
+                                    <span class="badge bg-success me-1">Backend</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="team-card">
+                                <div class="team-avatar">
+                                    <i class="fas fa-code"></i>
+                                </div>
+                                <h4>Saeed Alghaithi</h4>
+                                <p class="text-muted mb-2">Full-Stack Developer</p>
+                                <p class="text-muted small">I have a strong interest in programming and modern web technologies. I enjoy learning new skills, working with others, and continuously improving my technical knowledge.</p>
+                                <div class="mt-3">
+                                    <span class="badge bg-primary me-1">Frontend</span>
+                                    <span class="badge bg-success me-1">Backend</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="team-card">
+                                <div class="team-avatar">
+                                    <i class="fas fa-cogs"></i>
+                                </div>
+                                <h4>Saif Al Meqbaali</h4>
+                                <p class="text-muted mb-2">Software Developer</p>
+                                <p class="text-muted small">I am interested in software development and enjoy building creative digital solutions. My talents include logical thinking, attention to detail, and adapting quickly to new technologies.</p>
+                                <div class="mt-3">
+                                    <span class="badge bg-success me-1">Backend</span>
+                                    <span class="badge bg-info">Database</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="team-card">
+                                <div class="team-avatar">
+                                    <i class="fas fa-paint-brush"></i>
+                                </div>
+                                <h4>Saeed Alnaqbi</h4>
+                                <p class="text-muted mb-2">UI/UX Designer</p>
+                                <p class="text-muted small">I enjoy web design and exploring innovative ideas in technology. My strengths are teamwork, communication, and creating user-friendly and visually appealing designs.</p>
+                                <div class="mt-3">
+                                    <span class="badge bg-primary me-1">Frontend</span>
+                                    <span class="badge bg-warning">Design</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="team-card">
+                                <div class="team-avatar">
+                                    <i class="fas fa-rocket"></i>
+                                </div>
+                                <h4>Masoud Amer Alahbabi</h4>
+                                <p class="text-muted mb-2">Full-Stack Developer</p>
+                                <p class="text-muted small">I am passionate about learning new technologies and developing practical solutions. My interests include programming, continuous learning, and collaborating with others to achieve successful project outcomes.</p>
+                                <div class="mt-3">
+                                    <span class="badge bg-primary me-1">Frontend</span>
+                                    <span class="badge bg-success me-1">Backend</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Timeline -->
+        <section class="mb-5 py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h2 class="section-title text-center">Project Journey</h2>
+                    <p class="section-subtitle text-center">From concept to completion</p>
+                    
+                    <div class="timeline-item">
+                        <h5>Concept Phase</h5>
+                        <p class="text-muted">Ideation and requirements gathering for peer-to-peer learning platform</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h5>Design Phase</h5>
+                        <p class="text-muted">UI/UX design and database schema planning</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h5>Development Phase</h5>
+                        <p class="text-muted">Full-stack implementation with MEAN stack technologies</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h5>Testing Phase</h5>
+                        <p class="text-muted">Feature testing, bug fixes, and performance optimization</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h5>Launch Phase</h5>
+                        <p class="text-muted">Deployment and launch of SkillSwap Hub</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container text-center">
+            <div class="mb-4">
+                <h3>SkillSwap Hub</h3>
+                <p class="text-muted">Empowering students through collaborative learning</p>
+            </div>
+            <div class="row justify-content-center mb-4">
+                <div class="col-auto">
+                    <a href="/pages/index.html" class="text-white me-3 text-decoration-none">Home</a>
+                    <a href="/pages/browse-skills.html" class="text-white me-3 text-decoration-none">Browse Skills</a>
+                    <a href="/pages/offer-skill.html" class="text-white me-3 text-decoration-none">Offer Skill</a>
+                    <a href="/pages/about.html" class="text-white text-decoration-none">About</a>
+                </div>
+            </div>
+            <p class="mb-0">&copy; 2026 SkillSwap Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/about.js"></script>
+</body>
+</html>
